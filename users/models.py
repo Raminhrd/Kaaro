@@ -86,6 +86,7 @@ class SpecialistRequest(models.Model):
         REJECTED = 3, "Rejected"
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="specialist_request")
+    national_code = models.CharField(max_length=10, unique=True)
     status = models.IntegerField(choices=Status.choices, default=Status.PENDING)
     note = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
