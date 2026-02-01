@@ -12,7 +12,4 @@ urlpatterns = [
     path('otp/login/', views.OTPLoginView.as_view()),
 
     path('info/', views.UserInfoView.as_view()),
-
-    path("specialist/request/", views.SpecialistRequestMeView.as_view(), name="specialist-request-me"),
-    path("admin/specialist-requests/<int:pk>/decision/", views.SpecialistRequestAdminDecisionView.as_view(), name="specialist-request-admin-decision"),
 ]

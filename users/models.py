@@ -77,17 +77,3 @@ class User(AbstractUser):
 
     def __str__(self) -> str:
         return f"{self.first_name} {self.last_name} ({self.phone_number})"
-
-
-class SpecialistRequest(models.Model):
-    class Status(models.IntegerChoices):
-        PENDING = 1, "Pending"
-        APPROVED = 2, "Approved"
-        REJECTED = 3, "Rejected"
-
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="specialist_request")
-    national_code = models.CharField(max_length=10, unique=True)
-    status = models.IntegerField(choices=Status.choices, default=Status.PENDING)
-    note = models.TextField(blank=True, null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    reviewed_at = models.DateTimeField(blank=True, null=True)
