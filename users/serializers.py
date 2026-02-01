@@ -2,7 +2,6 @@ from django.contrib.auth import authenticate, get_user_model
 from rest_framework import serializers
 from rest_framework_simplejwt.tokens import RefreshToken
 from .utils import normalize_phone_number
-from users.models import SpecialistRequest
 
 User = get_user_model()
 

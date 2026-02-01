@@ -9,11 +9,10 @@ from django.contrib.auth import get_user_model
 from django.utils import timezone
 from django.core.cache import cache
 
-from users.serializers import SignUpSerializer, OTPRequestSerializer, OTPLoginSerializer, UserInfoSerializer, SpecialistRequestAdminDecisionSerializer, SpecialistRequestSerializer, SpecialistRequestCreateSerializer
+from users.serializers import SignUpSerializer, OTPRequestSerializer, OTPLoginSerializer, UserInfoSerializer
 from users.utils import set_tokens_on_cookie, generate_otp
 from users.tasks import send_otp_sms
 from users.defaults import OTP_EXPIRY_SECONDS
-from users.models import SpecialistRequest
 from users.permission import IsAdminUser
 
 User = get_user_model()

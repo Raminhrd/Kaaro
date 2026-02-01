@@ -6,4 +6,6 @@ urlpatterns = [
     path('users/', include(("users.urls"))),
     path('services/', include("services.urls")),
     path('tasks/', include("tasks.urls")),
+    path("specialists/", include("specialists.urls")),
+
 ]
