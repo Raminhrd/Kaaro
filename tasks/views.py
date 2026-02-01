@@ -44,6 +44,13 @@ class TaskViewSet(ModelViewSet):
             return base.filter(specialist=user).order_by("-created_at")
 
         return Task.objects.none()
+    
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        task = serializer.save()
+
+        return Response(TaskSerializer(task).data,status=status.HTTP_201_CREATED)
 
 
     @action(
