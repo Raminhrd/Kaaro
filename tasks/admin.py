@@ -22,5 +22,4 @@ class TaskAdmin(admin.ModelAdmin):
         "specialist__phone_number",
         "address",
     )
-    autocomplete_fields = ("customer", "specialist", "service")
     ordering = ("-created_at",)

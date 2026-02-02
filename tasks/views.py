@@ -7,7 +7,7 @@ from rest_framework.viewsets import ModelViewSet
 
 from tasks.models import Task
 from tasks.serializers import TaskCreateSerializer, TaskSerializer
-from users.permission import IsApprovedSpecialist
+from specialists.permission import IsApprovedSpecialist
 
 
 class TaskViewSet(ModelViewSet):
