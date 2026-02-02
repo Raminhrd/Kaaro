@@ -9,17 +9,19 @@ The system uses Redis for OTP caching and Celery for background tasks like sendi
 
 ## ✨ Key Features
 
-✅ OTP Authentication (request OTP + login)  
-✅ JWT authentication stored in **cookies** (`accessToken`, `refreshToken`)  
-✅ User roles: **Customer / Specialist**  
-✅ Specialist request system (users can request to become specialists, admin approves)  
-✅ Job/Task request system (customers create requests)  
-✅ Specialists can accept nearby requests and complete jobs  
-✅ Redis caching for OTP codes (expires automatically)  
-✅ Celery background tasks (send OTP SMS asynchronously)  
-✅ API Documentation using Swagger  
+✅ OTP-based authentication (request OTP & login)  
+✅ JWT authentication stored securely in **HTTP-only cookies** (`accessToken`, `refreshToken`)  
+✅ Role-based system: **Customer / Specialist**  
+✅ Specialist onboarding workflow (users request, admin approves via admin panel)  
+✅ Task-based service marketplace (customers create service requests)  
+✅ Approved specialists can view available tasks, accept them, and manage job lifecycle  
+✅ Concurrency-safe task assignment (tasks are locked after acceptance)  
+✅ Task lifecycle management: Pending → Accepted → In Progress → Done / Canceled  
+✅ Redis caching for OTP codes with automatic expiration  
+✅ Celery background workers for asynchronous OTP SMS delivery  
+✅ Fully tested APIs using **Pytest**  
+✅ API documentation generated with **Swagger (drf-spectacular)**
 
----
 
 ## 🛠️ Tech Stack
 
