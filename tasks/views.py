@@ -9,9 +9,10 @@ from rest_framework.viewsets import GenericViewSet
 from specialists.permission import IsApprovedSpecialist
 from tasks.models import Task
 from tasks.serializers import TaskCreateSerializer, TaskSerializer
+from tasks.utils.views import PaginatedQuerySetMixin
 
 
-class TaskViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin, GenericViewSet):
+class TaskViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin, GenericViewSet, PaginatedQuerySetMixin):
     permission_classes = [IsAuthenticated]
 
     def get_serializer_class(self):
