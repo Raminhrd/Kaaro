@@ -10,10 +10,15 @@ from specialists.permission import IsApprovedSpecialist
 from tasks.models import Task
 from tasks.serializers import TaskCreateSerializer, TaskSerializer
 from tasks.utils.views import PaginatedQuerySetMixin
+from tasks.filters import TaskFilter
 
 
 class TaskViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin, GenericViewSet, PaginatedQuerySetMixin):
     permission_classes = [IsAuthenticated]
+    filterset_class = TaskFilter
+    search_fields = ("contact_name", "contact_phone", "address")
+    ordering_fields = ("created_at", "status")
+    ordering = ("-created_at",)
 
     def get_serializer_class(self):
         return TaskCreateSerializer if self.action == "create" else TaskSerializer
@@ -73,7 +78,8 @@ class TaskViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin, GenericV
             .filter(status=Task.Status.PENDING, specialist__isnull=True)
             .order_by("-created_at")
         )
-        return Response(TaskSerializer(qs, many=True).data, status=status.HTTP_200_OK)
+        qs = self.filter_queryset(qs)
+        return self.paginate_and_respond(qs)
 
     @action(
         detail=True,
